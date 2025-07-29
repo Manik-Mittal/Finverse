@@ -10,8 +10,11 @@ public interface TransactionRepo extends JpaRepository<Transaction, Long> {
 
 
     List<Transaction> findBySenderAccount(String senderAccount);
-
+    
+    
     List<Transaction> findByReceiverAccount(String receiverAccount);
-
-    List<Transaction> findBySenderAccountOrReceiverAccount(String senderAccount, String receiverAccount);
+    
+//    List<Transaction> findByAccount(String account);
+    
 }
+

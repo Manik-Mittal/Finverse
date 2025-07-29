@@ -1,10 +1,35 @@
-spring.application.name=transaction
+spring:
+  application:
+    name: transaction
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/XEPDB1
+    username: emp123
+    password: emp123
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.OracleDialect 
+server:
+  port: 8001
+  servlet:
+    context-path: /transactions
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+      hibernate: ERROR
 
-spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
-spring.datasource.username=your_username
-spring.datasource.password=your_password
-spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
 
-spring.jpa.database-platform=org.hibernate.dialect.Oracle10gDialect
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
+
+
+
+
+
+
+

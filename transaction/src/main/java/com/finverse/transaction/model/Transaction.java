@@ -1,106 +1,117 @@
 package com.finverse.transaction.model;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "transactions")
 public class Transaction {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Better for Oracle than AUTO
+    private Long id;
 
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private Long id;
+    @Column(name = "senderAccount", nullable = false)
+    private String senderAccount;
 
-@Column(name = "sender_account", nullable = false)
-private String senderAccount;
+    @Column(name = "receiverAccount", nullable = false)
+    private String receiverAccount;
 
-@Column(name = "receiver_account", nullable = false)
-private String receiverAccount;
+    @Column(name = "amount", nullable = false)
+    private Double amount;
 
-@Column(name = "amount", nullable = false)
-private Double amount;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
+    @Column(name = "transaction_time")
+    private LocalTime transactionTime;
 
-@Column(name = "transaction_time", nullable = false)
-private LocalDateTime transactionTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @Column(name = "transaction_date")
+    private LocalDate transactionDate;
 
-@Column(name = "transaction_date", nullable = false)
-private LocalDate transactionDate;
+    @Column(name = "status")
+    private String status;
 
-@Column(name = "status")
-private String status;
+    @Column(name = "transaction_type", nullable = false)
+    private String transactionType;
 
-@Column(name = "transaction_type", nullable = false)
-private String transactionType;
+    public Transaction() {}
 
-public Transaction() {}
+    public Transaction(String senderAccount, String receiverAccount, Double amount, String status, String transactionType) {
+        this.senderAccount = senderAccount;
+        this.receiverAccount = receiverAccount;
+        this.amount = amount;
+        this.status = status;
+        this.transactionType = transactionType;
+    }
 
-public Transaction(String senderAccount, String receiverAccount, Double amount, String status, String transactionType) {
-    this.senderAccount = senderAccount;
-    this.receiverAccount = receiverAccount;
-    this.amount = amount;
-    this.status = status;
-    this.transactionType = transactionType;
-}
+    @PrePersist
+    protected void onCreate() {
+        if (this.transactionTime == null)
+            this.transactionTime = LocalTime.now();
+        if (this.transactionDate == null)
+            this.transactionDate = LocalDate.now();
+    }
 
-@PrePersist
-protected void onCreate() {
-    this.transactionTime = LocalDateTime.now();
-    this.transactionDate = LocalDate.now();
-}
+    public Long getId() {
+        return id;
+    }
 
-// Getters and Setters
+    public String getSenderAccount() {
+        return senderAccount;
+    }
 
-public Long getId() {
-    return id;
-}
+    public void setSenderAccount(String senderAccount) {
+        this.senderAccount = senderAccount;
+    }
 
-public String getSenderAccount() {
-    return senderAccount;
-}
+    public String getReceiverAccount() {
+        return receiverAccount;
+    }
 
-public void setSenderAccount(String senderAccount) {
-    this.senderAccount = senderAccount;
-}
+    public void setReceiverAccount(String receiverAccount) {
+        this.receiverAccount = receiverAccount;
+    }
 
-public String getReceiverAccount() {
-    return receiverAccount;
-}
+    public Double getAmount() {
+        return amount;
+    }
 
-public void setReceiverAccount(String receiverAccount) {
-    this.receiverAccount = receiverAccount;
-}
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 
-public Double getAmount() {
-    return amount;
-}
+    public LocalTime getTransactionTime() {
+        return transactionTime;
+    }
 
-public void setAmount(Double amount) {
-    this.amount = amount;
-}
+    public void setTransactionTime(LocalTime transactionTime) {
+        this.transactionTime = transactionTime;
+    }
 
-public LocalDateTime getTransactionTime() {
-    return transactionTime;
-}
+    public LocalDate getTransactionDate() {
+        return transactionDate;
+    }
 
-public LocalDate getTransactionDate() {
-    return transactionDate;
-}
+    public void setTransactionDate(LocalDate transactionDate) {
+        this.transactionDate = transactionDate;
+    }
 
-public String getStatus() {
-    return status;
-}
+    public String getStatus() {
+        return status;
+    }
 
-public void setStatus(String status) {
-    this.status = status;
-}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-public String getTransactionType() {
-    return transactionType;
-}
+    public String getTransactionType() {
+        return transactionType;
+    }
 
-public void setTransactionType(String transactionType) {
-    this.transactionType = transactionType;
-}
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
+    }
 }

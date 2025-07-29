@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface TransactionService {
 
-    Transaction deposit(String account, Double amount);
+    Transaction deposit(String senderAccount, Double amount);
 
     Transaction withdraw(String account, Double amount);
 
