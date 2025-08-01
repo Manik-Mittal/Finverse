@@ -70,10 +70,10 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> getTransactionsByAccount(String account) {
-        if (account == null || account.isEmpty()) {
+    public List<Transaction> getTransactionsByAccount(String senderAccount) {
+        if (senderAccount == null || senderAccount.isEmpty()) {
             throw new TransactionException("Account must not be null or empty.");
         }
-        return transactionRepo.findBySenderAccount(account);
+        return transactionRepo.findBySenderAccount(senderAccount);
     }
 }

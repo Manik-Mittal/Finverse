@@ -17,4 +17,8 @@ public interface TransactionRepo extends JpaRepository<Transaction, Long> {
 //    List<Transaction> findByAccount(String account);
     
 }
-
+  
+  
+  
+  
+  
