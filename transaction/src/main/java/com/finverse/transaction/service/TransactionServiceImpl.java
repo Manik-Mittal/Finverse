@@ -5,15 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.finverse.transaction.model.Transaction;
-import com.finverse.transaction.repo.TransactionRepo;
+import com.finverse.transaction.dto.BalanceUpdateRequest;
 import com.finverse.transaction.exception.TransactionException;
+import com.finverse.transaction.model.Transaction;
+import com.finverse.transaction.proxyService.AccountClient;
+import com.finverse.transaction.repo.TransactionRepo;
 
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
     private TransactionRepo transactionRepo;
+
+    @Autowired
+    private AccountClient accountClient;
 
     @Override
     public Transaction deposit(String senderAccount, Double amount) {
@@ -24,13 +29,24 @@ public class TransactionServiceImpl implements TransactionService {
             throw new TransactionException("Deposit amount must be greater than zero.");
         }
 
+        // 1. Call Account Service to update balance
+        BalanceUpdateRequest request = new BalanceUpdateRequest();
+        request.setAccountNumber(senderAccount);
+        request.setAmount(amount);
+        request.setTransactionType("CREDIT"); // or "DEPOSIT" based on your Account MS logic
+
+        accountClient.updateBalance(request); // Call the Feign client
+
+        // 2. Save transaction record
         Transaction txn = new Transaction();
         txn.setSenderAccount(senderAccount);
         txn.setReceiverAccount(senderAccount);
         txn.setAmount(amount);
         txn.setTransactionType("DEPOSIT");
+
         return transactionRepo.save(txn);
     }
+
 
     @Override
     public Transaction withdraw(String account, Double amount) {
@@ -41,13 +57,24 @@ public class TransactionServiceImpl implements TransactionService {
             throw new TransactionException("Withdrawal amount must be greater than zero.");
         }
 
+        // 1. Call Account service to update balance using OpenFeign
+        BalanceUpdateRequest balanceUpdateRequest = new BalanceUpdateRequest();
+        balanceUpdateRequest.setAccountNumber(account);
+        balanceUpdateRequest.setAmount(amount);
+        balanceUpdateRequest.setTransactionType("WITHDRAW");
+
+        accountClient.updateBalance(balanceUpdateRequest);
+
+        // 2. Save transaction in DB
         Transaction txn = new Transaction();
         txn.setSenderAccount(account);
         txn.setReceiverAccount(account);
         txn.setAmount(amount);
         txn.setTransactionType("WITHDRAW");
+
         return transactionRepo.save(txn);
     }
+
 
     @Override
     public Transaction transfer(String sender, String receiver, Double amount) {
