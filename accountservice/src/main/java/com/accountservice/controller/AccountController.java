@@ -1,6 +1,7 @@
 package com.accountservice.controller;
 
 import com.accountservice.dto.BalanceUpdateRequest;
+import com.accountservice.dto.TransferRequest;
 import com.accountservice.model.Account;
 import com.accountservice.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,16 +64,29 @@ public class AccountController {
         }
     }
 
+//    @PostMapping("/transfer")
+//    public ResponseEntity<String> transfer(
+//            @RequestParam String fromAccount,
+//            @RequestParam String toAccount,
+//            @RequestParam double amount) {
+//        try {
+//            accountService.transfer(fromAccount, toAccount, amount);
+//            return ResponseEntity.ok("Transfer successful");
+//        } catch (RuntimeException e) {
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
+    
     @PostMapping("/transfer")
-    public ResponseEntity<String> transfer(
-            @RequestParam String fromAccount,
-            @RequestParam String toAccount,
-            @RequestParam double amount) {
+    public ResponseEntity<String> transfer(@RequestBody TransferRequest request) {
         try {
-            accountService.transfer(fromAccount, toAccount, amount);
+            accountService.transfer(request.getFromAccount(), request.getToAccount(), request.getAmount());
             return ResponseEntity.ok("Transfer successful");
         } catch (RuntimeException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 }
+
+

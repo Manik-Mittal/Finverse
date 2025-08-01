@@ -1,0 +1,9 @@
+package com.accountservice.dto;
+
+public class TransferRequest {
+    private String fromAccount;
+    private String toAccount;
+    private double amount;
+
+    // Getters and Setters
+}
