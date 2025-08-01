@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.loanService.entity.Loan;
 import com.loanService.service.LoanService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/loans")
 public class LoanController {
@@ -24,22 +26,27 @@ public class LoanController {
     @Autowired
     private LoanService loanService;
 
-    @PostMapping("/addLoan")
-    public ResponseEntity<Loan> createLoan(@RequestBody Loan loan) {
+    @PostMapping
+    public ResponseEntity<Loan> createLoan(@Valid @RequestBody Loan loan) {
         return new ResponseEntity<>(loanService.createLoan(loan), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{accountNumber}")
+    @GetMapping("/account/{accountNumber}")
     public ResponseEntity<List<Loan>> getLoansByAccount(@PathVariable String accountNumber) {
         return ResponseEntity.ok(loanService.getLoansByAccount(accountNumber));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Loan> updateLoan(@PathVariable Long id, @RequestBody Loan loan) {
+    @GetMapping("findByLoanId/{id}")
+    public ResponseEntity<Loan> getLoanById(@PathVariable Long id) {
+        return ResponseEntity.ok(loanService.getLoanById(id));
+    }
+
+    @PutMapping("updateLoan/{id}")
+    public ResponseEntity<Loan> updateLoan(@PathVariable Long id,@Valid @RequestBody Loan loan) {
         return ResponseEntity.ok(loanService.updateLoan(id, loan));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("deleteLoan/{id}")
     public ResponseEntity<Void> deleteLoan(@PathVariable Long id) {
         loanService.deleteLoan(id);
         return ResponseEntity.noContent().build();
