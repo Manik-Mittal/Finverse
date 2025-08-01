@@ -1,0 +1,31 @@
+package com.accountservice.service;
+
+import com.accountservice.dao.AccountDAO;
+import com.accountservice.model.Account;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class AccountService {
+
+    @Autowired
+    private AccountDAO accountDAO;
+
+    // Create or Update Account
+    public Account createOrUpdateAccount(Account account) {
+        return accountDAO.save(account); // save() handles both insert & update
+    }
+
+    // Get Account by ID
+    public Account getAccount(int id) {
+        Optional<Account> optional = accountDAO.findById(id);
+        return optional.orElse(null);
+    }
+
+    // Delete Account by ID
+    public void deleteAccount(int id) {
+        accountDAO.deleteById(id);
+    }
+}

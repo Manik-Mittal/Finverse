@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: productapp
+
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521/orcl
+    username: hr
+    password: hr
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    # database-platform: org.hibernate.dialect.Oracle12cDialect
+    # show-sql: true
+    # properties:
+    #   hibernate:
+    #     format_sql: true
+
+server:
+  port: 9090
+  servlet:
+    context-path: /productapp
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+      hibernate: ERROR

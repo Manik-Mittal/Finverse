@@ -1,0 +1,38 @@
+package com.accountservice.service;
+
+import com.accountservice.dao.AccountDAO;
+import com.accountservice.model.Account;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AccountService {
+
+    @Autowired
+    private AccountDAO accountDAO;
+
+    public Account createAccount(Account account) {
+        return accountDAO.save(account);
+    }
+
+    public Account getAccount(String accountNumber) {
+        return accountDAO.findById(accountNumber).orElse(null);
+    }
+
+    public Account updateAccount(String accountNumber, Account updatedData) {
+        return accountDAO.findById(accountNumber).map(existingAccount -> {
+            existingAccount.setName(updatedData.getName());
+            existingAccount.setAddress(updatedData.getAddress());
+            existingAccount.setPhoneNumber(updatedData.getPhoneNumber());
+            return accountDAO.save(existingAccount);
+        }).orElse(null);
+    }
+
+    public boolean deleteAccount(String accountNumber) {
+        if (accountDAO.existsById(accountNumber)) {
+            accountDAO.deleteById(accountNumber);
+            return true;
+        }
+        return false;
+    }
+}

@@ -1,0 +1,11 @@
+package com.accountservice.dto;
+
+public class AccountResponseDTO {
+    private String accountNumber;
+    private String accountType;
+    private String customerName;
+    private String email;
+    private String phoneNumber;
+
+    // Getters and Setters
+}

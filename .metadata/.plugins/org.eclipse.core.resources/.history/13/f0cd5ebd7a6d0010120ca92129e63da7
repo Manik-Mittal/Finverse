@@ -1,0 +1,35 @@
+package com.accountservice.controller;
+
+import com.accountservice.model.Account;
+import com.accountservice.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/accounts")
+public class AccountController {
+
+    @Autowired
+    private AccountService accountService;
+
+    @PostMapping
+    public Account create(@RequestBody Account account) {
+        return accountService.createAccount(account);
+    }
+
+    @GetMapping("/{accountNumber}")
+    public Account get(@PathVariable String accountNumber) {
+        return accountService.getAccount(accountNumber);
+    }
+
+    @PutMapping("/{accountNumber}")
+    public Account update(@PathVariable String accountNumber, @RequestBody Account account) {
+        return accountService.updateAccount(accountNumber, account);
+    }
+
+    @DeleteMapping("/{accountNumber}")
+    public String delete(@PathVariable String accountNumber) {
+        boolean deleted = accountService.deleteAccount(accountNumber);
+        return deleted ? "Deleted successfully" : "Account not found";
+    }
+}
