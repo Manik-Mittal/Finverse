@@ -1,5 +1,0 @@
-package com.accountservice.dao;
-
-public class TransferRequest {
-
-}

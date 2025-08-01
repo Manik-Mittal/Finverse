@@ -1,5 +1,0 @@
-package com.accountservice.dto;
-
-public class AccountRequestDTO {
-
-}
