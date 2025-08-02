@@ -1,0 +1,152 @@
+<div class="transaction-container">
+  <div class="transaction-card">
+    <h2>Banking Transactions</h2>
+    
+    <div class="tab-navigation">
+      <button 
+        class="tab-btn"
+        [class.active]="selectedTab === 'deposit'"
+        (click)="selectTab('deposit')">
+        <span class="tab-icon">💰</span>
+        Deposit
+      </button>
+      <button 
+        class="tab-btn"
+        [class.active]="selectedTab === 'withdraw'"
+        (click)="selectTab('withdraw')">
+        <span class="tab-icon">💸</span>
+        Withdraw
+      </button>
+      <button 
+        class="tab-btn"
+        [class.active]="selectedTab === 'transfer'"
+        (click)="selectTab('transfer')">
+        <span class="tab-icon">🔄</span>
+        Transfer
+      </button>
+    </div>
+
+    <div *ngIf="message" class="message" [ngClass]="messageType">
+      {{ message }}
+      <button class="close-btn" (click)="clearMessage()">×</button>
+    </div>
+
+    <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+      <div class="form-content">
+        <!-- Deposit Form -->
+        <div *ngIf="selectedTab === 'deposit'" class="transaction-form">
+          <div class="form-group">
+            <label for="account">Account Number</label>
+            <input 
+              type="text" 
+              id="account" 
+              formControlName="account"
+              placeholder="Enter account number"
+              [class.error]="transactionForm.get('account')?.invalid && transactionForm.get('account')?.touched">
+            <div class="error-message" *ngIf="transactionForm.get('account')?.invalid && transactionForm.get('account')?.touched">
+              Valid account number is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Deposit Amount</label>
+            <input 
+              type="number" 
+              id="amount" 
+              formControlName="amount"
+              placeholder="Enter amount to deposit"
+              min="0.01"
+              step="0.01"
+              [class.error]="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched">
+            <div class="error-message" *ngIf="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched">
+              Amount must be greater than 0
+            </div>
+          </div>
+        </div>
+
+        <!-- Withdraw Form -->
+        <div *ngIf="selectedTab === 'withdraw'" class="transaction-form">
+          <div class="form-group">
+            <label for="account">Account Number</label>
+            <input 
+              type="text" 
+              id="account" 
+              formControlName="account"
+              placeholder="Enter account number"
+              [class.error]="transactionForm.get('account')?.invalid && transactionForm.get('account')?.touched">
+            <div class="error-message" *ngIf="transactionForm.get('account')?.invalid && transactionForm.get('account')?.touched">
+              Valid account number is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Withdrawal Amount</label>
+            <input 
+              type="number" 
+              id="amount" 
+              formControlName="amount"
+              placeholder="Enter amount to withdraw"
+              min="0.01"
+              step="0.01"
+              [class.error]="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched">
+            <div class="error-message" *ngIf="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched">
+              Amount must be greater than 0
+            </div>
+          </div>
+        </div>
+
+        <!-- Transfer Form -->
+        <div *ngIf="selectedTab === 'transfer'" class="transaction-form">
+          <div class="form-group">
+            <label for="account">From Account</label>
+            <input 
+              type="text" 
+              id="account" 
+              formControlName="account"
+              placeholder="Enter sender account number"
+              [class.error]="transactionForm.get('account')?.invalid && transactionForm.get('account')?.touched">
+            <div class="error-message" *ngIf="transactionForm.get('account')?.invalid && transactionForm.get('account')?.touched">
+              Valid sender account number is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="toAccount">To Account</label>
+            <input 
+              type="text" 
+              id="toAccount" 
+              formControlName="toAccount"
+              placeholder="Enter receiver account number"
+              [class.error]="transactionForm.get('toAccount')?.invalid && transactionForm.get('toAccount')?.touched">
+            <div class="error-message" *ngIf="transactionForm.get('toAccount')?.invalid && transactionForm.get('toAccount')?.touched">
+              Valid receiver account number is required
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Transfer Amount</label>
+            <input 
+              type="number" 
+              id="amount" 
+              formControlName="amount"
+              placeholder="Enter amount to transfer"
+              min="0.01"
+              step="0.01"
+              [class.error]="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched">
+            <div class="error-message" *ngIf="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched">
+              Amount must be greater than 0
+            </div>
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="submit-btn"
+          [disabled]="transactionForm.invalid || isSubmitting">
+          <span *ngIf="isSubmitting" class="spinner"></span>
+          {{ isSubmitting ? 'Processing...' : getSubmitButtonText() }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
