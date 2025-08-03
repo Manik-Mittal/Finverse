@@ -1,0 +1,31 @@
+<div class="login-wrapper">
+  <div class="login-header">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0f4c81" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="12" fill="#0f4c81"/>
+      <path d="M7 13v-2h10v2zM7 16v-2h10v2z" fill="#fff"/>
+    </svg>
+    <h2 class="bank-title">Finserve Bank</h2>
+    <span class="login-sub">Sign in to your account</span>
+  </div>
+  <form class="login-form" (submit)="handleLogin($event)">
+    <div class="input-group">
+      <label for="username">Username</label>
+      <input id="username" type="text" placeholder="Enter username"
+      #usernameInput
+             [value]="username()"
+             (input)="username.set(usernameInput.value)"
+             autocomplete="username" required>
+    </div>
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input id="password" type="password" placeholder="Enter password"
+      #passwordInput
+             [value]="password()" 
+             (input)="password.set(passwordInput.value)"
+             autocomplete="current-password" required>
+    </div>
+    <div class="error-message" *ngIf="error()">{{ error() }}</div>
+    <button type="submit" class="login-btn">Sign In</button>
+    <button type="button" class="reset-btn" (click)="resetForm()">Reset</button>
+  </form>
+</div>

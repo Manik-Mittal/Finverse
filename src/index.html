@@ -2,12 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>FinserveApp</title>
+  <title>Finserve Bank</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    body {
+      margin: 0;
+      background: #f6fafc;
+      font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    }
+    .bank-ui-background {
+      background: linear-gradient(90deg, #0f4c81, #60a3bc 60%);
+      min-height: 100vh;
+    }
+    .bank-ui-container {
+      max-width: 420px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+    .bank-ui-logo {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 0.06em;
+      gap: 0.5em;
+      justify-content: center;
+      user-select: none;
+    }
+    .bank-ui-appcontent {
+      background: #fff;
+      border-radius: 1em;
+      box-shadow: 0 4px 24px #0f4c8140;
+      padding: 32px 24px 24px 24px;
+      min-height: 320px;
+    }
+  </style>
 </head>
 <body>
-  <app-root></app-root>
+  <div class="bank-ui-background">
+    <div class="bank-ui-container">
+      <div class="bank-ui-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="#fff" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="12" fill="#0f4c81"/>
+          <path d="M7 13v-2h10v2zM7 16v-2h10v2z" fill="#fff"/>
+        </svg>
+        Finserve Bank
+      </div>
+      <div class="bank-ui-appcontent">
+        <app-root></app-root>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

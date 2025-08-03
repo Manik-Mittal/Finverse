@@ -1,0 +1,40 @@
+<!-- src/app/pages/dashboard/dashboard.html -->
+
+<nav role="navigation" aria-label="Dashboard navigation">
+  <button
+    routerLink="transactions"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="nav-button"
+  >
+    Transactions
+  </button>
+  <button
+    routerLink="loans"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="nav-button"
+  >
+    Loans
+  </button>
+  <button
+    routerLink="accounts"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="nav-button"
+  >
+    Accounts
+  </button>
+  <button
+    routerLink="users"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="nav-button"
+  >
+    Users
+  </button>
+</nav>
+
+<section class="dashboard-content" role="main" tabindex="0">
+  <router-outlet></router-outlet>
+</section>
