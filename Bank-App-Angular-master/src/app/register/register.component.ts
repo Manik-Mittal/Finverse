@@ -25,11 +25,20 @@ export class RegisterComponent {
   //model for register form 
   registerForm1 = this.fb.group({
    // acno: [' ', [Validators.required, Validators.pattern('[0-9]+')]],
-    username: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
+    username: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
     firstName: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
     lastName: ['', [Validators.required, Validators.pattern('[a-zA-Z]+')]],
-    password: [' ', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]],
-    email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]]
+    // 
+   password: ['', Validators.required],
+
+// password: ['', [
+//   Validators.pattern('^[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&]).*$')
+// ]]
+// ,
+
+    // email: ['', [Validators.required, Validators.pattern('[a-zA-Z0-9]+')]]
+    email: ['', [Validators.required, Validators.email]]
+
   })
 
 
