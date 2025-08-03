@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!localStorage.getItem("currentAcno")) {
+    if (!localStorage.getItem("username")) {
       alert("please login")
       this.router.navigateByUrl("")
     }

@@ -40,6 +40,7 @@ export class LoginComponent {
         console.log("User:", localStorage.getItem("username"));
          console.log("userid:", localStorage.getItem("id"));
        // alert(result.messsage)
+       console.log("hey guys2")
         this.router.navigateByUrl("dashboard")
       },
       result=>{

@@ -1,19 +1,19 @@
-package com.example.ServiceRegistary2;
+	package com.example.ServiceRegistary2;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+	import org.springframework.boot.SpringApplication;
+	import org.springframework.boot.autoconfigure.SpringBootApplication;
+	import org.springframework.boot.SpringApplication;
+	import org.springframework.boot.autoconfigure.SpringBootApplication;
+	import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 
-@EnableEurekaServer
-@SpringBootApplication
-public class ServiceRegistary2Application {
+	@EnableEurekaServer
+	@SpringBootApplication
+	public class ServiceRegistary2Application {
 
-	public static void main(String[] args) {
+		public static void main(String[] args) {
 
-		SpringApplication.run(ServiceRegistary2Application.class, args);
+			SpringApplication.run(ServiceRegistary2Application.class, args);
+		}
+
 	}
-
-}
