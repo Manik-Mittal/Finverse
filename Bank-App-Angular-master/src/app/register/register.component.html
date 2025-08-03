@@ -1,0 +1,79 @@
+<div class="row">
+
+
+    <div class=" col-lg-6 col-md-12 col-sm-12">
+        <app-registercard></app-registercard>
+
+
+
+    </div>
+
+    <div class="container col-lg-6 col-md-12  col-sm-12">
+        <input id="register_toggle" type="checkbox">
+        <div class="slider">
+            <form [formGroup]="registerForm1" class="form">
+                <span class="title text-white">SIGNUP</span>
+                <div class="form_control">
+                    <input formControlName="username" id="Ruser" name="username" class="input" type="text"
+                        placeholder="User Name">
+                </div>
+                <div class="valdiv1 ms-2"
+                    *ngIf="this.registerForm1.get('username')?.errors && this.registerForm1.get('username')?.touched">
+                    <p>Please enter a valid username. Username can only contain alphabets.<span>(e.g anu)</span> </p>
+                </div>
+                <div class="form_control">
+                    <input formControlName="password" id="Rpassw" name="password" class="input" type="password"
+                        placeholder="Enter password">
+                </div>
+                <div class="valdiv1 ms-2"
+                    *ngIf="this.registerForm1.get('password')?.errors && this.registerForm1.get('password')?.touched">
+                    <p>Please enter your password. Special characters are not allowed. <span>(e.g abc123)</span></p>
+                </div>
+                <div class="form_control">
+                <input formControlName="email" id="Remail" name="email" class="input" type="text"
+                 placeholder="Email">
+                </div>
+                <div class="valdiv1 ms-2"
+               *ngIf="registerForm1.get('email')?.errors && registerForm1.get('email')?.touched">
+               <p>Please enter a valid username. Username can only contain alphabets.<span>(e.g anu)</span> </p>
+                 </div>
+
+                 <div class="form_control">
+                    <input formControlName="firstName" id="Ruser" name="firstName" class="input" type="text"
+                        placeholder="First Name">
+                </div>
+                <div class="valdiv1 ms-2"
+                    *ngIf="this.registerForm1.get('firstName')?.errors && this.registerForm1.get('firstName')?.touched">
+                    <p>Please enter a valid username. Username can only contain alphabets.<span>(e.g anu)</span> </p>
+                </div>
+                <div class="form_control">
+                    <input formControlName="lastName" id="Ruser" name="lastName" class="input" type="text"
+                        placeholder="Last Name">
+                </div>
+                <div class="valdiv1 ms-2"
+                    *ngIf="this.registerForm1.get('lastName')?.errors && this.registerForm1.get('lastName')?.touched">
+                    <p>Please enter a valid username. Username can only contain alphabets.<span>(e.g anu)</span> </p>
+                </div>
+                <!-- <div class="form_control">
+                    <input formControlName="acno" id="Raccno" name="acno" class="input" type="text"
+                        placeholder="Account Number">
+                </div>
+                <div class="valdiv1 ms-2"
+                    *ngIf="this.registerForm1.get('acno')?.errors && this.registerForm1.get('acno')?.touched">
+                    <p>Invalid account number. Please enter only numbers and try again. <span>(e.g 1000)</span></p>
+                </div> -->
+                
+                
+                <button (click)="register()" type="submit" class="fs-5">Signup</button>
+
+                <p class="text-white ">Already have an account ? <a class="text-info" style="text-decoration:none ;"
+                        href=""> Login</a></p>
+
+            </form>
+
+
+        </div>
+
+    </div>
+
+</div>
