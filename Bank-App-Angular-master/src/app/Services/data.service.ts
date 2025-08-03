@@ -81,8 +81,8 @@ export class DataService {
     const data = { username,password }
     return this.http.post('http://localhost:8082/user/signin', data)
   }
-
-
+   
+   
   deposit(acno: any, psw: any, amnt: any) {
     const data = { acno, psw, amnt }
     return this.http.post('http://localhost:3000/deposit', data, this.getToken())

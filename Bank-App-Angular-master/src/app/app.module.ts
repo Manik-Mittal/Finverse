@@ -3,14 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { HomecardComponent } from './homecard/homecard.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomecardComponent } from './components/homecard/homecard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { RegisterComponent } from './components/register/register.component';
 import { RegistercardComponent } from './registercard/registercard.component';
 import { TransactionComponent } from './transaction/transaction.component';
-import { DeleteComponent } from './delete/delete.component';
+import { DeleteComponent } from './components/delete/delete.component';
 import {HttpClientModule} from '@angular/common/http';
 
 

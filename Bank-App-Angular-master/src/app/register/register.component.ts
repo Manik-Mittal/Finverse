@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataService } from '../Services/data.service';
+import { DataService } from '../../Services/data.service';
 
 @Component({
   selector: 'app-register',
