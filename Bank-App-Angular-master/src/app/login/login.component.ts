@@ -33,10 +33,12 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.ds.login(username,password).subscribe((result:any)=>{
 
-        localStorage.setItem("currentUser",result.currentUser)
-        localStorage.setItem("currentAcno",JSON.stringify(result.currentAcno))
+        localStorage.setItem("username",result.user.username)
+        localStorage.setItem("id",JSON.stringify(result.user.id))
         localStorage.setItem("token",JSON.stringify(result.token))
-
+    
+        console.log("User:", localStorage.getItem("username"));
+         console.log("userid:", localStorage.getItem("id"));
        // alert(result.messsage)
         this.router.navigateByUrl("dashboard")
       },
