@@ -8,5 +8,7 @@ import com.loanService.entity.Loan;
 
 public interface LoanRepository extends JpaRepository<Loan, Long> {
 	List<Loan> findByAccountNumber(String accountNumber);
+	List<Loan> findByUserId(Long userId);
+
 }
 

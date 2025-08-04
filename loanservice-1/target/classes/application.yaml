@@ -1,18 +1,23 @@
 server:
-  port: 8082
+  port: 8083
 
 spring:
   application:
     name: loan-service
   datasource:
     url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
-    username: emp123
-    password: emp123
+    username: hr
+    password: hr
     driver-class-name: oracle.jdbc.OracleDriver
   cloud:
     compatibility-verifier:
       enabled: false
-    
+eureka:
+  client:
+    service-url:
+         defaultZone : http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
 
   jpa:
     hibernate:

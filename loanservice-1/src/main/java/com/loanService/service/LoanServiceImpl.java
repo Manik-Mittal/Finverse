@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.loanService.dto.AccountDto;
+import com.loanService.dto.UserDto;
 import com.loanService.entity.Loan;
 import com.loanService.exceptions.LoanNotFoundException;
 import com.loanService.exceptions.LoanNotValidException;
 import com.loanService.feign.AccountClient;
+import com.loanService.feign.UserServiceClient;
 import com.loanService.repository.LoanRepository;
 
 import feign.FeignException;
@@ -23,6 +25,9 @@ public class LoanServiceImpl implements LoanService {
 
     @Autowired
     private AccountClient accountClient;
+    
+    @Autowired
+    private UserServiceClient userServiceClient;
 
     @Override
     public Loan createLoan(Loan loan) {
@@ -42,6 +47,9 @@ public class LoanServiceImpl implements LoanService {
         if (loan.getLoanType() == null || loan.getLoanType().isEmpty()) {
             throw new LoanNotValidException("Loan type is required.");
         }
+        if (loan.getUserId() == null) {
+            throw new LoanNotValidException("User ID is required.");
+        }
 
         // Verify account via Feign client
         try {
@@ -54,6 +62,18 @@ public class LoanServiceImpl implements LoanService {
         } catch (FeignException e) {
             throw new RuntimeException("Error communicating with Account Service: " + e.getMessage());
         }
+
+//        // Verify user via Feign client
+//        try {
+//            UserDto user = userServiceClient.getUserById(loan.getUserId());
+//            if (user == null) {
+//                throw new LoanNotValidException("User does not exist for ID: " + loan.getUserId());
+//            }
+//        } catch (FeignException.NotFound e) {
+//            throw new LoanNotValidException("User not found with ID: " + loan.getUserId());
+//        } catch (FeignException e) {
+//            throw new RuntimeException("Error communicating with User Service: " + e.getMessage());
+//        }
 
         // Save loan
         try {
@@ -104,4 +124,13 @@ public class LoanServiceImpl implements LoanService {
     public List<Loan> getAllLoans() {
         return loanRepository.findAll();
     }
+
+	@Override
+	public List<Loan> getLoansByUserId(Long userId) {
+		List<Loan> loans = loanRepository.findByUserId(userId);
+	    if (loans == null || loans.isEmpty()) {
+	        throw new LoanNotFoundException("No loans exist for user ID: " + userId);
+	    }
+	    return loans;
+	}
 }

@@ -16,5 +16,8 @@ public interface LoanService {
 	//Get Loan by Loan ID: Retrieve loan details using the unique loan ID.
 	public Loan getLoanById(Long loanId);
 	
+	//Get loans by userId
+	public List<Loan> getLoansByUserId(Long userId);
+	
 	public BigDecimal calculateOutstandingAmount(Long loanId);
 }

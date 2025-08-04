@@ -26,6 +26,9 @@ public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
     @NotBlank(message = "Account number cannot be blank")
     @Size(min = 5, max = 20, message = "Account number must be between 5 and 20 characters")

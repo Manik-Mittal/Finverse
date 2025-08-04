@@ -48,6 +48,7 @@ public class LoanController {
     	Loan loan = loanService.getLoanById(loanId);
     	LoanDTO dto = new LoanDTO(
     		    loan.getId(),
+    		    loan.getUserId(),
     		    loan.getAccountNumber(),
     		    loan.getLoanAmount(),
     		    loan.getLoanType(),
@@ -57,6 +58,12 @@ public class LoanController {
     		);
         return ResponseEntity.ok(dto);
     }
+    
+    @GetMapping("getByUserId/{userId}")
+    public ResponseEntity<List<Loan>> getLoansByUserId(@PathVariable Long userId) {
+        return ResponseEntity.ok(loanService.getLoansByUserId(userId));
+    }
+    
     
     @PutMapping("/{id}")
     public ResponseEntity<Loan> updateLoan(@PathVariable Long id,@Valid @RequestBody Loan loan) {
