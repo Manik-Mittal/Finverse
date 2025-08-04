@@ -1,3 +1,21 @@
+#server:
+#  port: 8082
+#
+#spring:
+#  application:
+#    name: loan-service
+#  datasource:
+#    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
+#    username: emp123
+#    password: emp123
+#    driver-class-name: oracle.jdbc.OracleDriver
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    database-platform: org.hibernate.dialect.OracleDialect
+
+
 server:
   port: 8082
 
@@ -14,3 +32,10 @@ spring:
       ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.OracleDialect
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
