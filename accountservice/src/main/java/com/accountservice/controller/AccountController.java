@@ -29,6 +29,11 @@ public class AccountController {
     public Account update(@PathVariable String accountNumber, @RequestBody Account account) {
         return accountService.updateAccount(accountNumber, account);
     }
+    @GetMapping("/exists/{accountNumber}")
+    public ResponseEntity<Boolean> doesAccountExist(@PathVariable String accountNumber) {
+        boolean exists = accountService.doesAccountExist(accountNumber);
+        return ResponseEntity.ok(exists);
+    }
 
     @DeleteMapping("/{accountNumber}")
     public String delete(@PathVariable String accountNumber) {
@@ -36,19 +41,7 @@ public class AccountController {
         return deleted ? "Deleted successfully" : "Account not found";
     }
 
-   // Update Balance: deposit or withdraw
-//    @PutMapping("/update-balance")
-//    public ResponseEntity<Account> updateBalance(
-//            @RequestParam String ACCOUNT_NUMBER,
-//            @RequestParam double BALANCE,
-//            @RequestParam String transactionType) {
-//        try {
-//            Account updatedAccount = accountService.updateBalance(ACCOUNT_NUMBER, BALANCE, transactionType);
-//            return ResponseEntity.ok(updatedAccount);
-//        } catch (RuntimeException e) {
-//            return ResponseEntity.badRequest().body(null);
-//        }
-//    }
+
 
     @PutMapping("/update-balance")
     public ResponseEntity<Account> updateBalance(@RequestBody BalanceUpdateRequest request) {
@@ -64,18 +57,6 @@ public class AccountController {
         }
     }
 
-//    @PostMapping("/transfer")
-//    public ResponseEntity<String> transfer(
-//            @RequestParam String fromAccount,
-//            @RequestParam String toAccount,
-//            @RequestParam double amount) {
-//        try {
-//            accountService.transfer(fromAccount, toAccount, amount);
-//            return ResponseEntity.ok("Transfer successful");
-//        } catch (RuntimeException e) {
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
-//    }
     
     @PostMapping("/transfer")
     public ResponseEntity<String> transfer(@RequestBody TransferRequest request) {

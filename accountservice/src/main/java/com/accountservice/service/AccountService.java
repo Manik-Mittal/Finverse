@@ -20,6 +20,9 @@ public class AccountService {
     public Account createAccount(Account account) {
         return accountDAO.save(account);
     }
+    public boolean doesAccountExist(String accountNumber) {
+        return accountDAO.findByAccountNumber(accountNumber) != null;
+    }
 
     public Account getAccount(String accountNumber) {
         return accountDAO.findById(accountNumber).orElse(null);

@@ -1,14 +1,21 @@
+
+
 package com.accountservice.model;
 
 import jakarta.persistence.*;
+import java.util.Random;
 
 @Entity
 @Table(name = "ACCOUNTS")
+@Access(AccessType.FIELD)
 public class Account {
 
+    @Column(nullable = false)
+    private Long userId;  // Provided manually
+
     @Id
-    @Column(length = 12)
-    private String accountNumber; // Now the primary key
+    @Column(length = 12, unique = true, nullable = false)
+    private String accountNumber;  // Will be generated if not present
 
     @Column(nullable = false)
     private String name;
@@ -20,7 +27,7 @@ public class Account {
     private double balance;
 
     @Column(nullable = false)
-    private String accountType; // e.g., Saving or Current
+    private String accountType;
 
     @Column(nullable = false)
     private String address;
@@ -28,7 +35,31 @@ public class Account {
     @Column(nullable = false)
     private String phoneNumber;
 
-    // Getters and setters
+    @PrePersist
+    public void generateAccountNumber() {
+        if (this.accountNumber == null || this.accountNumber.trim().isEmpty()) {
+            this.accountNumber = generate12DigitNumber();
+        }
+    }
+
+    private String generate12DigitNumber() {
+        Random random = new Random();
+        StringBuilder sb = new StringBuilder();
+        while (sb.length() < 12) {
+            sb.append(random.nextInt(10));
+        }
+        return sb.toString();
+    }
+
+    // Getters and Setters
+
+    public Long getUserId() {
+        return userId;
+    }
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -78,3 +109,4 @@ public class Account {
         this.phoneNumber = phoneNumber;
     }
 }
+

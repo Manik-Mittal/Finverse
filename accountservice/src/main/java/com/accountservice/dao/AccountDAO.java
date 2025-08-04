@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountDAO extends JpaRepository<Account, String> {
+	Account findByAccountNumber(String accountNumber);
 }
