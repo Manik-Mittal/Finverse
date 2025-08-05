@@ -13,6 +13,7 @@ public interface CardRepository extends JpaRepository<Card, Long> {
     Card findByCardNumber(String cardNumber);
 
     List<Card> findByAccountNumber(String accountNumber);
+    List<Card> findByAccountNumberIn(List<String> accountNumbers);
 
     @Query("SELECT c FROM Card c WHERE c.expiryDate <= :cutoffDate")
     List<Card> findCardsExpiringSoon(LocalDate cutoffDate);

@@ -3,7 +3,7 @@ spring:
     name: cardservice
 
   main:
-    allow-bean-definition-overriding: true  # ✅ Add this to allow overriding bean definitions
+    allow-bean-definition-overriding: true
 
   datasource:
     url: jdbc:oracle:thin:@localhost:1521/XEPDB1
@@ -35,6 +35,16 @@ server:
 card:
   kafka:
     topic: card-events
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
 
 account:
   service:

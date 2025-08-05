@@ -1,5 +1,7 @@
 package com.bank.cardservice.client;
 
+import java.util.List;
+
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,5 +15,8 @@ public interface AccountClient {
 	    boolean doesAccountExist(@PathVariable("accountNumber") String accountNumber);
     @GetMapping("/api/accounts/{accountNumber}")
     AccountDto getAccountDetails(@PathVariable String accountNumber);
+    @GetMapping("/api/accounts/user/{userId}")
+    List<AccountDto> getAccountsByUserId(@PathVariable Long userId);
+
    
 }

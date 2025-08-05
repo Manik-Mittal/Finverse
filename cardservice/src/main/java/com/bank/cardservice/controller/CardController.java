@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.cardservice.model.Card;
@@ -18,17 +19,18 @@ import com.bank.cardservice.service.CardService;
 import jakarta.validation.Valid;
 
 @RestController
+@RequestMapping("/api/cards")
 public class CardController {
 
     @Autowired
     private CardService service;
 
-    @GetMapping("/card/test")
+    @GetMapping("/test")
     public String testCardEndpoint() {
         return "Card Service is running!";
     }
 
-    @PostMapping("/api/cards")
+    @PostMapping
     public ResponseEntity<?> issueCard(@Valid @RequestBody Card card) {
         try {
             Card issuedCard = service.createCard(card);
@@ -38,7 +40,21 @@ public class CardController {
         }
     }
 
-    @GetMapping("/api/cards/{accountNumber}")
+    @GetMapping("/active/user/{userId}")
+    public ResponseEntity<List<Card>> getActiveCardsByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(service.getActiveCardsByUserId(userId));
+    }
+
+    @GetMapping("/active-count/user/{userId}")
+    public ResponseEntity<?> getActiveCardCountByUserId(@PathVariable Long userId) {
+        List<Card> activeCards = service.getActiveCardsByUserId(userId);
+        if (activeCards.isEmpty()) {
+            return ResponseEntity.ok("No active cards found for userId: " + userId);
+        }
+        return ResponseEntity.ok(activeCards.size());
+    }
+
+    @GetMapping("/{accountNumber}")
     public ResponseEntity<?> getCards(@PathVariable String accountNumber) {
         List<Card> cards = service.getCardsByAccount(accountNumber);
         if (cards.isEmpty()) {
@@ -48,32 +64,32 @@ public class CardController {
         }
     }
 
-    @GetMapping("/api/cards/details/{cardNumber}")
+    @GetMapping("/details/{cardNumber}")
     public ResponseEntity<Card> getCard(@PathVariable String cardNumber) {
         return ResponseEntity.ok(service.getCardByNumber(cardNumber));
     }
 
-    @PutMapping("/api/cards/block/{cardNumber}")
+    @PutMapping("/block/{cardNumber}")
     public ResponseEntity<Card> block(@PathVariable String cardNumber) {
         return ResponseEntity.ok(service.blockCard(cardNumber));
     }
 
-    @PutMapping("/api/cards/activate/{cardNumber}")
+    @PutMapping("/activate/{cardNumber}")
     public ResponseEntity<Card> activate(@PathVariable String cardNumber) {
         return ResponseEntity.ok(service.activateCard(cardNumber));
     }
 
-    @GetMapping("/api/cards/expiring")
+    @GetMapping("/expiring")
     public ResponseEntity<List<Card>> getExpiringCards() {
         return ResponseEntity.ok(service.getCardsExpiringSoon());
     }
 
-    @PutMapping("/api/cards/limit/{cardNumber}")
+    @PutMapping("/limit/{cardNumber}")
     public ResponseEntity<Card> setCardLimit(@PathVariable String cardNumber, @RequestBody BigDecimal limit) {
         return ResponseEntity.ok(service.updateCardLimit(cardNumber, limit));
     }
 
-    @GetMapping("/api/cards/limit/{cardNumber}")
+    @GetMapping("/limit/{cardNumber}")
     public ResponseEntity<BigDecimal> getCardLimit(@PathVariable String cardNumber) {
         return ResponseEntity.ok(service.getCardLimit(cardNumber));
     }

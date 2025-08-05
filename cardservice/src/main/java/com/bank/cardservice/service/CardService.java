@@ -2,6 +2,7 @@ package com.bank.cardservice.service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bank.cardservice.client.AccountClient;
+import com.bank.cardservice.dto.AccountDto;
 import com.bank.cardservice.exceptions.CardNotFoundException;
 import com.bank.cardservice.model.Card;
 import com.bank.cardservice.repository.CardRepository;
@@ -42,6 +44,28 @@ public class CardService {
 
         logger.info("Issuing new card for account: {}", card.getAccountNumber());
         return repo.save(card);
+    }
+    public List<Card> getActiveCardsByUserId(Long userId) {
+        List<AccountDto> accounts = accountClient.getAccountsByUserId(userId);
+
+        if (accounts == null || accounts.isEmpty()) {
+            logger.warn("No accounts found for userId: {}", userId);
+            return Collections.emptyList();
+        }
+
+        List<String> accountNumbers = accounts.stream()
+                .map(AccountDto::getAccountNumber)
+                .toList();
+
+        List<Card> allCards = repo.findByAccountNumberIn(accountNumbers);
+
+        return allCards.stream()
+                .filter(Card::getActive)
+                .toList();
+    }
+    public int countActiveCardsByUserId(Long userId) {
+        List<Card> activeCards = getActiveCardsByUserId(userId);
+        return activeCards.size();
     }
 
     public List<Card> getCardsByAccount(String accountNumber) {

@@ -1,5 +1,8 @@
 package com.bank.cardservice.client;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.bank.cardservice.dto.AccountDto;
@@ -21,9 +24,15 @@ public class AccountClientFallback implements AccountClient {
         }
         throw new IllegalArgumentException("Mock: Account not found");
     }
+   
 
     @Override
     public boolean doesAccountExist(String accountNumber) {
         return "123456789123".equals(accountNumber);
     }
+    @Override
+    public List<AccountDto> getAccountsByUserId(Long userId) {
+        return Collections.emptyList();
+    }
+
 }
