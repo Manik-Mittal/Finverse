@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+
+<div class="deposit-container">
+  <h2>💰 Deposit Funds</h2>
+
+  <form [formGroup]="depositForm" (ngSubmit)="onDeposit()">
+    <div class="form-grid">
+      <!-- Sender Account -->
+      <div class="form-group">
+        <label for="senderAccount">Select Your Account:</label>
+        <select id="senderAccount" formControlName="senderAccount">
+          <option value="">-- Select Account --</option>
+          <option *ngFor="let acc of accounts" [value]="acc.accountNumber">
+            {{ acc.accountType }} - ****{{ acc.accountNumber.toString().slice(-4) }} (₹{{ acc.balance }})
+          </option>
+        </select>
+      </div>
+
+      <!-- Deposit Amount -->
+      <div class="form-group">
+        <label for="amount">Amount to Deposit (₹):</label>
+        <input id="amount" type="number" formControlName="amount" min="1" />
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="depositForm.invalid">Deposit</button>
+  </form>
+</div>

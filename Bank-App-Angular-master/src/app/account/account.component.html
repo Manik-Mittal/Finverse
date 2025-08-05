@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <app-navbar></app-navbar>
+  <h2 class="text-primary mb-4">My Accounts</h2>
+
+  <div class="account-grid">
+    <div *ngFor="let acc of accounts">
+      <div class="card shadow-sm border-0">
+        <div class="card-body">
+          <h5 class="card-title">Account Number: {{ acc.accountNumber }}</h5>
+          <p class="card-text">
+            <strong>Balance:</strong> ₹{{ acc.balance }}<br />
+            <strong>Account Type:</strong> {{ acc.accountType }}<br />
+            <strong>Address:</strong> {{ acc.address }}<br />
+            <strong>Phone:</strong> {{ acc.phoneNumber }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="text-success mt-5 mb-3">Transaction History</h3>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Transaction ID</th>
+          <th>Sender</th>
+          <th>Receiver</th>
+          <th>Amount</th>
+          <th>Type</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let txn of transactions">
+          <td>{{ txn.transactionId }}</td>
+          <td>{{ txn.senderAccount }}</td>
+          <td>{{ txn.receiverAccount }}</td>
+          <td>₹{{ txn.amount }}</td>
+          <td>{{ txn.transactionType }}</td>
+          <td>{{ txn.timestamp | date:'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+
+<div class="transfer-container">
+  <h2>💸 Transfer Funds</h2>
+
+  <form [formGroup]="transferForm" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      <!-- Sender Account -->
+      <div class="form-group">
+        <label for="fromAccount">Select Your Account:</label>
+        <select id="fromAccount" formControlName="fromAccount">
+          <option value="">-- Select Account --</option>
+          <option *ngFor="let acc of myAccounts" [value]="acc.accountNumber">
+            {{ acc.accountType }} - ****{{ acc.accountNumber.slice(-4) }} (₹{{ acc.balance }})
+          </option>
+        </select>
+      </div>
+
+      <!-- Receiver Account -->
+      <div class="form-group">
+        <label for="toAccount">Receiver Account Number:</label>
+        <input id="toAccount" type="text" formControlName="toAccount" />
+      </div>
+
+      <!-- Re-enter Receiver Account -->
+      <div class="form-group">
+        <label for="reEnterAccount">Re-enter Account Number:</label>
+        <input id="reEnterAccount" type="text" formControlName="reEnterAccount" />
+      </div>
+
+      <!-- Receiver Name -->
+      <div class="form-group">
+        <label for="receiverName">Receiver Name:</label>
+        <input id="receiverName" type="text" formControlName="receiverName" />
+      </div>
+
+      <!-- Amount -->
+      <div class="form-group">
+        <label for="amount">Amount (₹):</label>
+        <input id="amount" type="number" formControlName="amount" />
+      </div>
+    </div>
+
+    <button type="submit">Transfer</button>
+  </form>
+</div>

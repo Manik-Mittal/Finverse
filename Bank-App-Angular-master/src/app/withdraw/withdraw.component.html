@@ -1,0 +1,28 @@
+<app-navbar></app-navbar>
+
+<div class="deposit-container">
+  <h2>💸 Withdraw Funds</h2>
+
+  <form [formGroup]="withdrawForm" (ngSubmit)="onWithdraw()">
+    <div class="form-grid">
+      <!-- Account Dropdown -->
+      <div class="form-group">
+        <label for="account">Select Your Account:</label>
+        <select id="account" formControlName="account">
+          <option value="">-- Select Account --</option>
+          <option *ngFor="let acc of accounts" [value]="acc.accountNumber">
+            {{ acc.accountType }} - ****{{ acc.accountNumber.toString().slice(-4) }} (₹{{ acc.balance }})
+          </option>
+        </select>
+      </div>
+
+      <!-- Amount Input -->
+      <div class="form-group">
+        <label for="amount">Amount to Withdraw (₹):</label>
+        <input id="amount" type="number" formControlName="amount" min="1" />
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="withdrawForm.invalid">Withdraw</button>
+  </form>
+</div>
