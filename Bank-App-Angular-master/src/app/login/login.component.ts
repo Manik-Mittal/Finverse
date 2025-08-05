@@ -32,8 +32,11 @@ export class LoginComponent {
 
     if (this.loginForm.valid) {
       this.ds.login(username,password).subscribe((result:any)=>{
+        console.log(result.user)
+
 
         localStorage.setItem("username",result.user.username)
+        localStorage.setItem("email",result.user.email )
         localStorage.setItem("id",JSON.stringify(result.user.id))
         localStorage.setItem("token",JSON.stringify(result.token))
     

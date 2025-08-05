@@ -106,6 +106,10 @@ export class DataService {
     return this.http.delete('http://localhost:3000/deleteacc' + acno, this.getToken())
   }
 
+  accountcrt( userData: any) {
+    //const data = { uname,funame,luname,email, psw }
+    return this.http.post('http://localhost:8080/api/accounts', userData)
+  }
 
 }
 

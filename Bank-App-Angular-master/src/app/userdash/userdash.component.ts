@@ -12,7 +12,7 @@ export class UserdashComponent implements OnInit {
   loans: any[] = [];
   totalBalance: number = 0;
   // userId: any = 5200; // Can be fetched from localStorage or auth in future
-  userId: any = localStorage.getItem('userId');
+  userId: any = localStorage.getItem('id');
   userName: any = localStorage.getItem('username');
 
 

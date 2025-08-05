@@ -1,0 +1,130 @@
+.card-management {
+  padding: 2rem;
+  background: #f5f7fa;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.subtitle {
+  color: gray;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  color: #1f3bb3;
+  margin-top: 2rem;
+}
+
+.card-box {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  background: linear-gradient(to right, #ed1c24, #f44336);
+  color: white;
+  border-radius: 12px;
+  padding: 1rem;
+  position: relative;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.card-number {
+  margin: 1rem 0;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+}
+
+.card-name {
+  font-size: 1rem;
+}
+
+.card-expiry {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.card-details {
+  margin-top: 1rem;
+}
+
+.green {
+  color: green;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #d3d3d3;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.progress-bar .used {
+  background: green;
+  height: 100%;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.block-btn {
+  background: #d32f2f;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+}
+
+.view-btn {
+  background: #e0e0e0;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.apply-form {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+}
+
+.apply-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.apply-form input,
+.apply-form select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  background: #8c9eff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+}

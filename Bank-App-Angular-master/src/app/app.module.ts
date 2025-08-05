@@ -19,6 +19,11 @@ import { TransferComponent } from './transfer/transfer.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { AccountComponent } from './account/account.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
+import { LoansComponent } from './loans/loans.component';
+import { LoanpageComponent } from './loanpage/loanpage.component';
+import { AccountcrtComponent } from './accountcrt/accountcrt.component';
+import { CardManagementComponent } from './card-management/card-management.component';
+
 
 
 
@@ -38,7 +43,12 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
     TransferComponent,
     DepositComponent,
     AccountComponent,
-    WithdrawComponent
+    WithdrawComponent,
+    LoansComponent,
+    LoanpageComponent,
+    AccountcrtComponent,
+    CardManagementComponent,
+
   ],
   imports: [
     BrowserModule,

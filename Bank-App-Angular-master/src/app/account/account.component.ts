@@ -7,7 +7,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  userId: any = localStorage.getItem('userId');
+  userId: any = localStorage.getItem('id');
 
   accounts: any[] = [];
   transactions: any[] = [];

@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div class="loan-form " *ngIf="accounts.length > 0">
+  <h3>Apply for a New Loan</h3>
+  <form [formGroup]="loanForm" (ngSubmit)="submitApplication()">
+
+    <!-- Account Selection -->
+    <label>Select Account</label>
+    <select formControlName="accountNumber">
+      <option *ngFor="let acc of accounts" [value]="acc.accountNumber">
+        {{ acc.accountNumber }} (₹{{ acc.balance }})
+      </option>
+    </select>
+
+    <label>Loan Type</label>
+    <select formControlName="loanType">
+      <option value="Personal Loan">Personal Loan</option>
+      <option value="Auto Loan">Auto Loan</option>
+      <option value="Home Loan">Home Loan</option>
+    </select>
+
+    <label>Loan Amount</label>
+    <input type="number" formControlName="loanAmount" placeholder="Enter amount" />
+
+    <label>Loan Term (Months)</label>
+    <select formControlName="termInMonths">
+      <option value="12">12 months</option>
+      <option value="24">24 months</option>
+      <option value="36">36 months</option>
+      <option value="60">60 months</option>
+    </select>
+
+    <label>Purpose of Loan</label>
+    <textarea formControlName="purpose" placeholder="Describe the purpose of this loan"></textarea>
+
+    <label>Start Date</label>
+    <input type="date" formControlName="startDate" />
+
+    <label>Employment Status</label>
+    <select formControlName="employmentStatus">
+      <option value="Employed">Employed</option>
+      <option value="Self-Employed">Self-Employed</option>
+      <option value="Unemployed">Unemployed</option>
+    </select>
+
+    <button class="submit-btn" type="submit">Submit Application</button>
+  </form>
+</div>
+
+<!-- Loading fallback if accounts not loaded yet -->
+<div class="loan-form" *ngIf="accounts.length === 0">
+  <p>🔄 Loading accounts...</p>
+</div>

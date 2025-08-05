@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!-- <div class="container-fluid">
 
 
 
@@ -49,5 +49,66 @@
 
 
 
+  </div>
+</div> -->
+<div class="container-fluid login-wrapper">
+  <div class="row justify-content-center align-items-center min-vh-100 p-3">
+    <div class="col-lg-6 col-md-10 mb-4">
+      <app-homecard></app-homecard>
+    </div>
+
+    <div class="col-lg-5 col-md-10">
+      <input id="register_toggle" type="checkbox" hidden />
+      <div class="slider glass-box">
+        <form [formGroup]="loginForm" class="form">
+          <h2 class="title">Login</h2>
+
+          <div class="form_control">
+            <input
+              formControlName="username"
+              name="uname"
+              id="u1"
+              class="input"
+              type="text"
+              [placeholder]="data1"
+              required
+            />
+          </div>
+          <div
+            class="valdiv"
+            *ngIf="loginForm.get('username')?.errors && loginForm.get('username')?.touched"
+          >
+            <p>Invalid account number. Only numbers allowed. <span>(e.g. 1000)</span></p>
+          </div>
+
+          <div class="form_control">
+            <input
+              formControlName="password"
+              id="p1"
+              name="password"
+              class="input"
+              type="password"
+              [placeholder]="data2"
+              required
+            />
+          </div>
+          <div
+            class="valdiv"
+            *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched"
+          >
+            <p>
+              Enter your password. No special characters allowed. <span>(e.g abc123)</span>
+            </p>
+          </div>
+
+          <button type="button" class="login-btn" (click)="login()">Login</button>
+
+          <p class="bottom-text">
+            Don’t have an account?
+            <a href="register" class="register-link">Create Account</a>
+          </p>
+        </form>
+      </div>
+    </div>
   </div>
 </div>

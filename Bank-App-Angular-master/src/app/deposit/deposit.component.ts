@@ -19,7 +19,7 @@ export class DepositComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const userId: any = localStorage.getItem('userId'); 
+    const userId: any = localStorage.getItem('id'); 
 
     this.http.get<any[]>(`http://localhost:8080/api/accounts/user/${userId}`)
       .subscribe({

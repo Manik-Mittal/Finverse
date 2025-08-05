@@ -10,6 +10,9 @@ import { TransferComponent } from './transfer/transfer.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { AccountComponent } from './account/account.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
+import { LoanpageComponent } from './loanpage/loanpage.component';
+import { AccountcrtComponent } from './accountcrt/accountcrt.component';
+import { CardManagementComponent } from './card-management/card-management.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
@@ -21,6 +24,9 @@ const routes: Routes = [
   {path:"deposit",component:DepositComponent},
   {path:"deposit",component:WithdrawComponent},
   {path:"withdraw",component:WithdrawComponent},
+  {path:"loanpage",component:LoanpageComponent},
+  {path:"accrt",component:AccountcrtComponent},
+  {path:"cards",component:CardManagementComponent},
 
   {path:"manage-accounts",component:AccountComponent},
   {path:"transaction",component:TransactionComponent}

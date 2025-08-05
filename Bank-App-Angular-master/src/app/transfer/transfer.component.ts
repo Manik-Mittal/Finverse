@@ -22,7 +22,7 @@ export class TransferComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const userId: any = localStorage.getItem('userId'); 
+    const userId: any = localStorage.getItem('id'); 
 
 
 
