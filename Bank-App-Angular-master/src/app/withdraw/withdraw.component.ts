@@ -19,7 +19,7 @@ export class WithdrawComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const userId = 5200;
+    const userId: any = localStorage.getItem('userId');
 
     this.http.get<any[]>(`http://localhost:8080/api/accounts/user/${userId}`)
       .subscribe({

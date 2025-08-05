@@ -13,7 +13,7 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
-  {path:"dashboard",component:DashboardComponent},
+  {path:"dashboard",component:UserdashComponent},
   {path:"dash",component:UserdashComponent},
   {path:"trans",component:TransactComponent},
   {path:"transfer",component:TransferComponent},

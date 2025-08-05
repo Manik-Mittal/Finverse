@@ -22,7 +22,9 @@ export class TransferComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const userId = '5200'; // Replace with actual dynamic user ID if needed
+    const userId: any = localStorage.getItem('userId'); 
+
+
 
     this.http.get<any[]>(`http://localhost:8080/api/accounts/user/${userId}`)
       .subscribe({

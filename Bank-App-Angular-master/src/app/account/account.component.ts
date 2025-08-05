@@ -7,7 +7,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-  userId: number = 5200; // replace later with dynamic ID
+  userId: any = localStorage.getItem('userId');
+
   accounts: any[] = [];
   transactions: any[] = [];
 

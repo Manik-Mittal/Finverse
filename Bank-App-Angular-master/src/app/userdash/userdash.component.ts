@@ -11,7 +11,10 @@ export class UserdashComponent implements OnInit {
   accounts: any[] = [];
   loans: any[] = [];
   totalBalance: number = 0;
-  userId: any = 5200; // Can be fetched from localStorage or auth in future
+  // userId: any = 5200; // Can be fetched from localStorage or auth in future
+  userId: any = localStorage.getItem('userId');
+  userName: any = localStorage.getItem('username');
+
 
   constructor(private userdashService: UserdashService) {}
 

@@ -71,7 +71,7 @@ export class DataService {
 
   register( userData: any) {
     //const data = { uname,funame,luname,email, psw }
-    return this.http.post('http://localhost:8083/user/signup', userData)
+    return this.http.post('http://localhost:8084/user/signup', userData)
   }
 //   register(userData: any): Observable<any> {
 //   return this.http.post('http://your-api-url/register', userData);
@@ -79,7 +79,7 @@ export class DataService {
 
   login(username: any, password: any) {
     const data = { username,password }
-    return this.http.post('http://localhost:8083/user/signin', data)
+    return this.http.post('http://localhost:8084/user/signin', data)
   }
 
 
