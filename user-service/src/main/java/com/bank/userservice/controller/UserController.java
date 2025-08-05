@@ -17,14 +17,15 @@ import com.bank.userservice.service.UserService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
+
+//@CrossOrigin(origins = "http://localhost:49712")
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
-
 
 
     @PostMapping("/signup")
