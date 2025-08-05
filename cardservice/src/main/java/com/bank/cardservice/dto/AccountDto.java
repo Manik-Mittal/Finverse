@@ -14,4 +14,5 @@ public class AccountDto {
 	    private String email;
 	    private String customerName;
 	    private String phoneNumber;
+	    private Long userId;
 }
